@@ -1,2 +1,2 @@
 # lego
-React component using Material Design Lite library
+React components using Material Design Lite library
