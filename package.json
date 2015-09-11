@@ -1,0 +1,26 @@
+{
+  "name": "reevoo-lego",
+  "version": "0.0.1",
+  "description": "React Components using the Material Design Lite library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reevoo/lego.git"
+  },
+  "keywords": [
+    "react",
+    "react-components",
+    "mdl",
+    "material-desing",
+    "material-design-lite"
+  ],
+  "author": "Victor Vila <victor.vila@reevoo.com> (http://reevoo.github.io)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/reevoo/lego/issues"
+  },
+  "homepage": "https://github.com/reevoo/lego#readme"
+}
