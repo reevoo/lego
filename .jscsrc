@@ -1,0 +1,10 @@
+{
+  "preset": "airbnb",
+  "esprima" : "esprima-fb",
+  "safeContextKeyword": "that",
+  "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties",
+  "disallowMultipleVarDecl": "exceptUndefined",
+  "requirePaddingNewLinesAfterBlocks": {
+    "allExcept": ["inProperties"]
+  }
+}
