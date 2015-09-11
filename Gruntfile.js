@@ -9,11 +9,16 @@ module.exports = function(grunt) {
 
       bundle: {
         command: function(environment) {
-          var minify = environment === 'production';
+          var minify = environment === 'minified';
 
           var generator = function(environment, rootFileName) {
+            var endFileName = rootFileName;
+            if (minify) {
+              endFileName += '.min';
+            }
+
             var command = 'jspm bundle-sfx src/' + rootFileName +
-              ' ' + rootFileName + '.js';
+              ' ' + endFileName + '.js';
 
             if (minify) {
               command = command + ' --minify';
@@ -57,18 +62,18 @@ module.exports = function(grunt) {
       options: {
         sourceMap: true,
       },
-      dev: {
+      regular: {
         files: {
           'lego.css': 'src/main.scss',
         },
       },
-      prod: {
+      minified: {
         options: {
           outputStyle: 'compressed',
           sourceMap: false,
         },
         files: {
-          'lego.css': 'src/main.scss',
+          'lego.min.css': 'src/main.scss',
         },
       },
     },
@@ -96,13 +101,15 @@ module.exports = function(grunt) {
     'jscs',
   ]);
 
-  grunt.registerTask('development:compile', [
-    'sass:dev',
-    'shell:bundle:development',
+  grunt.registerTask('compile:dev', [
+    'sass:regular',
+    'shell:bundle:regular',
   ]);
 
-  grunt.registerTask('production:compile', [
-    'sass:prod',
-    'shell:bundle:production',
+  grunt.registerTask('compile', [
+    'sass:regular',
+    'shell:bundle:regular',
+    'sass:minified',
+    'shell:bundle:minified',
   ]);
 };
