@@ -1,2 +1,380 @@
-!function(e){function r(e){for(var r=[],t=0,n=e.length;n>t;t++)-1==c.call(r,e[t])&&r.push(e[t]);return r}function t(e,t,n,o){if("string"!=typeof e)throw"System.register provided no module name";var a;a="boolean"==typeof n?{declarative:!1,deps:t,execute:o,executingRequire:n}:{declarative:!0,deps:t,declare:n},a.name=e,e in p||(p[e]=a),a.deps=r(a.deps),a.normalizedDeps=a.deps}function n(e,r){if(r[e.groupIndex]=r[e.groupIndex]||[],-1==c.call(r[e.groupIndex],e)){r[e.groupIndex].push(e);for(var t=0,o=e.normalizedDeps.length;o>t;t++){var a=e.normalizedDeps[t],d=p[a];if(d&&!d.evaluated){var l=e.groupIndex+(d.declarative!=e.declarative);if(void 0===d.groupIndex||d.groupIndex<l){if(void 0!==d.groupIndex&&(r[d.groupIndex].splice(c.call(r[d.groupIndex],d),1),0==r[d.groupIndex].length))throw new TypeError("Mixed dependency cycle detected");d.groupIndex=l}n(d,r)}}}}function o(e){var r=p[e];r.groupIndex=0;var t=[];n(r,t);for(var o=!!r.declarative==t.length%2,a=t.length-1;a>=0;a--){for(var l=t[a],i=0;i<l.length;i++){var s=l[i];o?d(s):u(s)}o=!o}}function a(e){return f[e]||(f[e]={name:e,dependencies:[],exports:{},importers:[]})}function d(r){if(!r.module){var t=r.module=a(r.name),n=r.module.exports,o=r.declare.call(e,function(e,r){t.locked=!0,n[e]=r;for(var o=0,a=t.importers.length;a>o;o++){var d=t.importers[o];if(!d.locked){var l=c.call(d.dependencies,t);d.setters[l](n)}}return t.locked=!1,r});if(t.setters=o.setters,t.execute=o.execute,!t.setters||!t.execute)throw new TypeError("Invalid System.register form for "+r.name);for(var l=0,u=r.normalizedDeps.length;u>l;l++){var i,v=r.normalizedDeps[l],m=p[v],g=f[v];g?i=g.exports:m&&!m.declarative?i=m.module.exports&&m.module.exports.__esModule?m.module.exports:{"default":m.module.exports,__useDefault:!0}:m?(d(m),g=m.module,i=g.exports):i=s(v),g&&g.importers?(g.importers.push(t),t.dependencies.push(g)):t.dependencies.push(null),t.setters[l]&&t.setters[l](i)}}}function l(e){var r,t=p[e];if(t)t.declarative?i(e,[]):t.evaluated||u(t),r=t.module.exports;else if(r=s(e),!r)throw new Error("Unable to load dependency "+e+".");return(!t||t.declarative)&&r&&r.__useDefault?r["default"]:r}function u(r){if(!r.module){var t={},n=r.module={exports:t,id:r.name};if(!r.executingRequire)for(var o=0,a=r.normalizedDeps.length;a>o;o++){var d=r.normalizedDeps[o],i=p[d];i&&u(i)}r.evaluated=!0;var s=r.execute.call(e,function(e){for(var t=0,n=r.deps.length;n>t;t++)if(r.deps[t]==e)return l(r.normalizedDeps[t]);throw new TypeError("Module "+e+" not declared as a dependency.")},t,n);s&&(n.exports=s)}}function i(r,t){var n=p[r];if(n&&!n.evaluated&&n.declarative){t.push(r);for(var o=0,a=n.normalizedDeps.length;a>o;o++){var d=n.normalizedDeps[o];-1==c.call(t,d)&&(p[d]?i(d,t):s(d))}n.evaluated||(n.evaluated=!0,n.module.execute.call(e))}}function s(e){if(v[e])return v[e];var r=p[e];if(!r)throw"Module "+e+" not present.";o(e),i(e,[]),p[e]=void 0;var t=r.module.exports;return(!t||!r.declarative&&t.__esModule!==!0)&&(t={"default":t,__useDefault:!0}),v[e]=t}var p={},c=Array.prototype.indexOf||function(e){for(var r=0,t=this.length;t>r;r++)if(this[r]===e)return r;return-1},f={},v={};return function(r,n){var o,o={register:t,get:s,set:function(e,r){v[e]=r},newModule:function(e){return e},global:e};o.set("@empty",{}),n(o);for(var a=0;a<r.length;a++)s(r[a])}}("undefined"!=typeof window?window:global)(["src/index"],function(e){e.register("src/index",[],function(e){"use strict";function r(){console.log("I am alive!")}return e("printMsg",r),{setters:[],execute:function(){}}})});
+(function(global) {
+
+  var defined = {};
+
+  // indexOf polyfill for IE8
+  var indexOf = Array.prototype.indexOf || function(item) {
+    for (var i = 0, l = this.length; i < l; i++)
+      if (this[i] === item)
+        return i;
+    return -1;
+  }
+
+  function dedupe(deps) {
+    var newDeps = [];
+    for (var i = 0, l = deps.length; i < l; i++)
+      if (indexOf.call(newDeps, deps[i]) == -1)
+        newDeps.push(deps[i])
+    return newDeps;
+  }
+
+  function register(name, deps, declare, execute) {
+    if (typeof name != 'string')
+      throw "System.register provided no module name";
+
+    var entry;
+
+    // dynamic
+    if (typeof declare == 'boolean') {
+      entry = {
+        declarative: false,
+        deps: deps,
+        execute: execute,
+        executingRequire: declare
+      };
+    }
+    else {
+      // ES6 declarative
+      entry = {
+        declarative: true,
+        deps: deps,
+        declare: declare
+      };
+    }
+
+    entry.name = name;
+
+    // we never overwrite an existing define
+    if (!(name in defined))
+      defined[name] = entry; 
+
+    entry.deps = dedupe(entry.deps);
+
+    // we have to normalize dependencies
+    // (assume dependencies are normalized for now)
+    // entry.normalizedDeps = entry.deps.map(normalize);
+    entry.normalizedDeps = entry.deps;
+  }
+
+  function buildGroups(entry, groups) {
+    groups[entry.groupIndex] = groups[entry.groupIndex] || [];
+
+    if (indexOf.call(groups[entry.groupIndex], entry) != -1)
+      return;
+
+    groups[entry.groupIndex].push(entry);
+
+    for (var i = 0, l = entry.normalizedDeps.length; i < l; i++) {
+      var depName = entry.normalizedDeps[i];
+      var depEntry = defined[depName];
+
+      // not in the registry means already linked / ES6
+      if (!depEntry || depEntry.evaluated)
+        continue;
+
+      // now we know the entry is in our unlinked linkage group
+      var depGroupIndex = entry.groupIndex + (depEntry.declarative != entry.declarative);
+
+      // the group index of an entry is always the maximum
+      if (depEntry.groupIndex === undefined || depEntry.groupIndex < depGroupIndex) {
+
+        // if already in a group, remove from the old group
+        if (depEntry.groupIndex !== undefined) {
+          groups[depEntry.groupIndex].splice(indexOf.call(groups[depEntry.groupIndex], depEntry), 1);
+
+          // if the old group is empty, then we have a mixed depndency cycle
+          if (groups[depEntry.groupIndex].length == 0)
+            throw new TypeError("Mixed dependency cycle detected");
+        }
+
+        depEntry.groupIndex = depGroupIndex;
+      }
+
+      buildGroups(depEntry, groups);
+    }
+  }
+
+  function link(name) {
+    var startEntry = defined[name];
+
+    startEntry.groupIndex = 0;
+
+    var groups = [];
+
+    buildGroups(startEntry, groups);
+
+    var curGroupDeclarative = !!startEntry.declarative == groups.length % 2;
+    for (var i = groups.length - 1; i >= 0; i--) {
+      var group = groups[i];
+      for (var j = 0; j < group.length; j++) {
+        var entry = group[j];
+
+        // link each group
+        if (curGroupDeclarative)
+          linkDeclarativeModule(entry);
+        else
+          linkDynamicModule(entry);
+      }
+      curGroupDeclarative = !curGroupDeclarative; 
+    }
+  }
+
+  // module binding records
+  var moduleRecords = {};
+  function getOrCreateModuleRecord(name) {
+    return moduleRecords[name] || (moduleRecords[name] = {
+      name: name,
+      dependencies: [],
+      exports: {}, // start from an empty module and extend
+      importers: []
+    })
+  }
+
+  function linkDeclarativeModule(entry) {
+    // only link if already not already started linking (stops at circular)
+    if (entry.module)
+      return;
+
+    var module = entry.module = getOrCreateModuleRecord(entry.name);
+    var exports = entry.module.exports;
+
+    var declaration = entry.declare.call(global, function(name, value) {
+      module.locked = true;
+      exports[name] = value;
+
+      for (var i = 0, l = module.importers.length; i < l; i++) {
+        var importerModule = module.importers[i];
+        if (!importerModule.locked) {
+          var importerIndex = indexOf.call(importerModule.dependencies, module);
+          importerModule.setters[importerIndex](exports);
+        }
+      }
+
+      module.locked = false;
+      return value;
+    });
+
+    module.setters = declaration.setters;
+    module.execute = declaration.execute;
+
+    if (!module.setters || !module.execute)
+      throw new TypeError("Invalid System.register form for " + entry.name);
+
+    // now link all the module dependencies
+    for (var i = 0, l = entry.normalizedDeps.length; i < l; i++) {
+      var depName = entry.normalizedDeps[i];
+      var depEntry = defined[depName];
+      var depModule = moduleRecords[depName];
+
+      // work out how to set depExports based on scenarios...
+      var depExports;
+
+      if (depModule) {
+        depExports = depModule.exports;
+      }
+      else if (depEntry && !depEntry.declarative) {
+        if (depEntry.module.exports && depEntry.module.exports.__esModule)
+          depExports = depEntry.module.exports;
+        else
+          depExports = { 'default': depEntry.module.exports, __useDefault: true };
+      }
+      // in the module registry
+      else if (!depEntry) {
+        depExports = load(depName);
+      }
+      // we have an entry -> link
+      else {
+        linkDeclarativeModule(depEntry);
+        depModule = depEntry.module;
+        depExports = depModule.exports;
+      }
+
+      // only declarative modules have dynamic bindings
+      if (depModule && depModule.importers) {
+        depModule.importers.push(module);
+        module.dependencies.push(depModule);
+      }
+      else
+        module.dependencies.push(null);
+
+      // run the setter for this dependency
+      if (module.setters[i])
+        module.setters[i](depExports);
+    }
+  }
+
+  // An analog to loader.get covering execution of all three layers (real declarative, simulated declarative, simulated dynamic)
+  function getModule(name) {
+    var exports;
+    var entry = defined[name];
+
+    if (!entry) {
+      exports = load(name);
+      if (!exports)
+        throw new Error("Unable to load dependency " + name + ".");
+    }
+
+    else {
+      if (entry.declarative)
+        ensureEvaluated(name, []);
+
+      else if (!entry.evaluated)
+        linkDynamicModule(entry);
+
+      exports = entry.module.exports;
+    }
+
+    if ((!entry || entry.declarative) && exports && exports.__useDefault)
+      return exports['default'];
+
+    return exports;
+  }
+
+  function linkDynamicModule(entry) {
+    if (entry.module)
+      return;
+
+    var exports = {};
+
+    var module = entry.module = { exports: exports, id: entry.name };
+
+    // AMD requires execute the tree first
+    if (!entry.executingRequire) {
+      for (var i = 0, l = entry.normalizedDeps.length; i < l; i++) {
+        var depName = entry.normalizedDeps[i];
+        var depEntry = defined[depName];
+        if (depEntry)
+          linkDynamicModule(depEntry);
+      }
+    }
+
+    // now execute
+    entry.evaluated = true;
+    var output = entry.execute.call(global, function(name) {
+      for (var i = 0, l = entry.deps.length; i < l; i++) {
+        if (entry.deps[i] != name)
+          continue;
+        return getModule(entry.normalizedDeps[i]);
+      }
+      throw new TypeError('Module ' + name + ' not declared as a dependency.');
+    }, exports, module);
+
+    if (output)
+      module.exports = output;
+  }
+
+  /*
+   * Given a module, and the list of modules for this current branch,
+   *  ensure that each of the dependencies of this module is evaluated
+   *  (unless one is a circular dependency already in the list of seen
+   *  modules, in which case we execute it)
+   *
+   * Then we evaluate the module itself depth-first left to right 
+   * execution to match ES6 modules
+   */
+  function ensureEvaluated(moduleName, seen) {
+    var entry = defined[moduleName];
+
+    // if already seen, that means it's an already-evaluated non circular dependency
+    if (!entry || entry.evaluated || !entry.declarative)
+      return;
+
+    // this only applies to declarative modules which late-execute
+
+    seen.push(moduleName);
+
+    for (var i = 0, l = entry.normalizedDeps.length; i < l; i++) {
+      var depName = entry.normalizedDeps[i];
+      if (indexOf.call(seen, depName) == -1) {
+        if (!defined[depName])
+          load(depName);
+        else
+          ensureEvaluated(depName, seen);
+      }
+    }
+
+    if (entry.evaluated)
+      return;
+
+    entry.evaluated = true;
+    entry.module.execute.call(global);
+  }
+
+  // magical execution function
+  var modules = {};
+  function load(name) {
+    if (modules[name])
+      return modules[name];
+
+    var entry = defined[name];
+
+    // first we check if this module has already been defined in the registry
+    if (!entry)
+      throw "Module " + name + " not present.";
+
+    // recursively ensure that the module and all its 
+    // dependencies are linked (with dependency group handling)
+    link(name);
+
+    // now handle dependency execution in correct order
+    ensureEvaluated(name, []);
+
+    // remove from the registry
+    defined[name] = undefined;
+
+    var module = entry.module.exports;
+
+    if (!module || !entry.declarative && module.__esModule !== true)
+      module = { 'default': module, __useDefault: true };
+
+    // return the defined module object
+    return modules[name] = module;
+  };
+
+  return function(mains, declare) {
+
+    var System;
+    var System = {
+      register: register, 
+      get: load, 
+      set: function(name, module) {
+        modules[name] = module; 
+      },
+      newModule: function(module) {
+        return module;
+      },
+      global: global 
+    };
+    System.set('@empty', {});
+
+    declare(System);
+
+    for (var i = 0; i < mains.length; i++)
+      load(mains[i]);
+  }
+
+})(typeof window != 'undefined' ? window : global)
+/* (['mainModule'], function(System) {
+  System.register(...);
+}); */
+
+(['src/index'], function(System) {
+
+System.register('src/index', [], function (_export) {
+  'use strict';
+
+  _export('printMsg', printMsg);
+
+  function printMsg() {
+    console.log('I am alive in ES6!');
+  }
+
+  return {
+    setters: [],
+    execute: function () {
+      ;
+    }
+  };
+});
+});
 //# sourceMappingURL=index.js.map
