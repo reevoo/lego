@@ -1,18 +1,20 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 
+import mdl from 'material-design-lite/material.min';
+
 export default Component => class extends React.Component {
   componentDidMount() {
-    componentHandler.upgradeElement(ReactDom.findDOMNode(this));
+    mdl.componentHandler.upgradeElement(ReactDom.findDOMNode(this));
   }
 
   componentDidUpdate() {
-    componentHandler.downgradeElements(ReactDom.findDOMNode(this));
-    componentHandler.upgradeElement(ReactDom.findDOMNode(this));
+    mdl.componentHandler.downgradeElements(ReactDom.findDOMNode(this));
+    mdl.componentHandler.upgradeElement(ReactDom.findDOMNode(this));
   }
 
   componentWillUnmount() {
-    componentHandler.downgradeElements(ReactDom.findDOMNode(this));
+    mdl.componentHandler.downgradeElements(ReactDom.findDOMNode(this));
   }
 
   render() {
