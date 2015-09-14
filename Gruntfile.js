@@ -108,8 +108,8 @@ module.exports = function(grunt) {
 
   grunt.registerTask('compile', [
     'sass:regular',
-    'shell:bundle:regular',
+    // 'shell:bundle:regular',
     'sass:minified',
-    'shell:bundle:minified',
+    // 'shell:bundle:minified',
   ]);
 };
