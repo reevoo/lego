@@ -36,4 +36,6 @@ DropdownMenu.propTypes = {
   onSelect: React.PropTypes.func,
   style: React.PropTypes.object,
   triggerId: React.PropTypes.string.isRequired,
-};mdl);
+};
+
+export default mdl(DropdownMenu);
