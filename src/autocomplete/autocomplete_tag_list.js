@@ -1,5 +1,5 @@
 import React from 'react';
-import BaseComponent from '../base-component';
+import BaseComponent from '../base_component';
 import Autocomplete from './autocomplete';
 import TagList from '../tag_list/tag_list';
 

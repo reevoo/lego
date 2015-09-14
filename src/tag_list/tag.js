@@ -1,6 +1,6 @@
 import React from 'react';
-import BaseComponent from '../base-component';
-import IconButton from '../icon_button/icon-button';
+import BaseComponent from '../base_component';
+import IconButton from '../icon_button/icon_button';
 
 export default class Tag extends BaseComponent {
   render() {

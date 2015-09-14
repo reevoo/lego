@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import BaseComponent from '../base-component';
+import BaseComponent from '../base_component';
 import mdl from '../mdl';
 
-import AutocompleteMenu from './autocomplete-menu';
+import AutocompleteMenu from './autocomplete_menu';
 import TextBox from '../text_box/text_box';
 
 const TAB = 9;

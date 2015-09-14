@@ -1,6 +1,6 @@
 import React from 'react';
 
-import BaseComponent from '../base-component';
+import BaseComponent from '../base_component';
 import Button from '../button/button';
 
 export default class Form extends BaseComponent {

@@ -1,5 +1,5 @@
 import React from 'react';
-import BaseComponent from '../base-component';
+import BaseComponent from '../base_component';
 
 const DEFAULT_TYPE = 'checkbox'; // switch is the other option
 

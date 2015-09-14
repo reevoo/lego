@@ -1,5 +1,5 @@
 import React from 'react';
-import BaseComponent from '../base-component';
+import BaseComponent from '../base_component';
 
 export default class DropdownMenuItem extends BaseComponent {
 

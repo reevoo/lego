@@ -1,8 +1,8 @@
 import React from 'react';
 import mdl from '../mdl';
-import BaseComponent from '../base-component';
+import BaseComponent from '../base_component';
 
-import DropdownMenuItem from './dropdown-menu-item';
+import DropdownMenuItem from './dropdown_menu_item';
 
 class DropdownMenu extends React.Component {
 

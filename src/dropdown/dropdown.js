@@ -1,7 +1,7 @@
 import React from 'react';
-import BaseComponent from '../base-component';
+import BaseComponent from '../base_component';
 
-import DropdownMenu from './dropdown-menu';
+import DropdownMenu from './dropdown_menu';
 import TextBox from '../text_box/text_box';
 
 export default class Dropdown extends BaseComponent {
