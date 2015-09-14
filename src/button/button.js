@@ -1,5 +1,5 @@
 import React from 'react';
-// import mdl from '../mdl';
+import mdl from '../mdl';
 
 class Button extends React.Component {
   render() {
@@ -19,5 +19,4 @@ Button.propTypes = {
   type: React.PropTypes.string,
 };
 
-// export default mdl(Button);
-export default Button;
+export default mdl(Button);
