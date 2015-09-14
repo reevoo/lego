@@ -1,5 +1,5 @@
 // Material Design Lite base imports
-import 'material-design-lite/material.min.css!';
+// import 'material-design-lite/material.min.css!';
 
 // Component imports
 import _Button from './button/button';

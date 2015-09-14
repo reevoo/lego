@@ -1,8 +1,8 @@
 {
   "name": "reevoo-lego",
-  "version": "0.0.5",
+  "version": "0.0.5-alpha",
   "description": "React Components using the Material Design Lite library",
-  "main": "index.min.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
