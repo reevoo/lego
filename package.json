@@ -25,6 +25,13 @@
   "homepage": "https://github.com/reevoo/lego#readme",
   "jspm": {
     "directories": {},
+    "dependencies": {
+      "clean-css": "npm:clean-css@^3.4.1",
+      "css": "github:systemjs/plugin-css@^0.1.16",
+      "material-design-lite": "github:google/material-design-lite@^1.0.4",
+      "react": "npm:react@^0.14.0-rc1",
+      "react-dom": "npm:react-dom@^0.14.0-rc1"
+    },
     "devDependencies": {
       "babel": "npm:babel-core@^5.1.13",
       "babel-runtime": "npm:babel-runtime@^5.1.13",
