@@ -1,4 +1,6 @@
 // Component imports
+import _Autocomplete from './src/autocomplete/autocomplete';
+import _AutocompleteTagList from './src/autocomplete/autocomplete_tag_list';
 import _Button from './src/button/button';
 import _CheckBox from './src/check_box/check_box';
 import _Form from './src/form/form';
@@ -7,6 +9,8 @@ import _TagList from './src/tag_list/tag_list';
 import _TextBox from './src/text_box/text_box';
 
 // Export components
+export const Autocomplete = _Autocomplete;
+export const AutocompleteTagList = _AutocompleteTagList;
 export const Button = _Button;
 export const CheckBox = _CheckBox;
 export const Form = _Form;
