@@ -1,6 +1,7 @@
 import React from 'react';
 
 export default class TableCell extends React.Component {
+
   render() {
     return <td
       colSpan={this.props.colspan}
@@ -8,4 +9,5 @@ export default class TableCell extends React.Component {
       {this.props.children}
     </td>;
   }
+
 }

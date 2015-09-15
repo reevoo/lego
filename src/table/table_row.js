@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Button } from 'reevoo/lego';
-import TableCell from './table-cell';
+import Button from '../button/button';
+import TableCell from './table_cell';
 
 export default class TableRow extends React.Component {
 
@@ -14,4 +14,5 @@ export default class TableRow extends React.Component {
       </tr>
     );
   }
+
 }
