@@ -8,7 +8,9 @@ export default class Sidebar extends React.Component {
       <div className='mdl-layout__drawer'>
         <nav className='mdl-navigation'>
           {this.props.routes.map(route =>
-            <Link to={route.path} className='mdl-navigation__link'>
+            <Link key={route.path}
+              to={route.path}
+              className='mdl-navigation__link'>
               {route.label}
             </Link>
           )}
