@@ -1,6 +1,10 @@
 import React from 'react';
 import mdl from '../mdl';
 
+import Card from '../card/card';
+import Sidebar from '../sidebar/sidebar';
+import Topbar from '../topbar/topbar';
+
 class Layout extends React.Component {
   render() {
     const topbar = this.props.topbar;
