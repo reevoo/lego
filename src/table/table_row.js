@@ -10,7 +10,7 @@ export default class TableRow extends React.Component {
     return (
       <tr>
         {this.props.columns.map(column =>
-          <TableCell key={column.key} numeric={this.props.numeric}>
+          <TableCell key={column.key} numeric={column.numeric}>
             {column.content(item)}
           </TableCell>
         )}
