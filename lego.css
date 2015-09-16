@@ -9208,6 +9208,9 @@ _:-ms-input-placeholder, :root .mdl-slider.mdl-slider.is-upgraded {
     .mdl-grid--no-spacing > .mdl-cell--12-col-desktop.mdl-cell--12-col-desktop {
       width: 100%; } }
 
+.mdl-data-table td .mdl-button {
+  will-change: initial; }
+
 .mdl-button--defaultcase {
   text-transform: none; }
 

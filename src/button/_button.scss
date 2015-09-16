@@ -1,3 +1,7 @@
+.mdl-data-table td .mdl-button{
+  will-change:initial; // Avoid render problem inside tables
+}
+
 .mdl-button--defaultcase {
   text-transform: none;
 }
