@@ -5,7 +5,7 @@ export default class TableCell extends React.Component {
   render() {
     return <td
       colSpan={this.props.colspan}
-      className={this.props.numeric ? null : 'mdl-data-table__cell--non-numeric'} >
+      className={this.props.numeric ? '' : 'mdl-data-table__cell--non-numeric'} >
       {this.props.children}
     </td>;
   }
