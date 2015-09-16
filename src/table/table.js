@@ -23,8 +23,8 @@ export default class Table extends React.Component {
       <tbody>
         {this.props.items.map(item =>
           <TableRow
-            key={Date.now()}
-            item={item}
+            key={item.key}
+            item={item.data}
             columns={this.props.columns} />
         )}
       </tbody>
@@ -34,7 +34,10 @@ export default class Table extends React.Component {
 }
 
 Table.propTypes = {
-  items: React.PropTypes.array.isRequired,
+  items: React.PropTypes.arrayOf(React.PropTypes.shape({
+    key: React.PropTypes.string.isRequired,
+    data: React.PropTypes.object.isRequired,
+  })).isRequired,
   columns: React.PropTypes.arrayOf(React.PropTypes.shape({
     key: React.PropTypes.string.isRequired,
     label: React.PropTypes.string,
