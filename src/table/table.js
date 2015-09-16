@@ -6,8 +6,8 @@ export default class Table extends React.Component {
 
   render() {
     let headers = this.props.columns.map(column => ({
-      key: item.key,
-      label: item.label,
+      key: column.key,
+      label: column.label,
     }));
 
     return <table
