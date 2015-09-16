@@ -21,7 +21,7 @@ export default class TableRow extends React.Component {
 }
 
 TableRow.propTypes = {
-  item: React.PropTypes.array.isRequired,
+  item: React.PropTypes.object.isRequired,
   columns: React.PropTypes.arrayOf(React.PropTypes.shape({
     key: React.PropTypes.string.isRequired,
     content: React.PropTypes.func.isRequired,

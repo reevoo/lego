@@ -21,8 +21,12 @@ export default class Table extends React.Component {
         : null
       }
       <tbody>
-        {this.props.items
-          .map(item => <TableRow item={item} columns={this.props.columns} />)}
+        {this.props.items.map(item =>
+          <TableRow
+            key={Date.now()}
+            item={item}
+            columns={this.props.columns} />
+        )}
       </tbody>
     </table>;
   }
