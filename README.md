@@ -1,4 +1,4 @@
-# lego
+# Lego
 React components using Material Design Lite library
 
 ![alt tag](http://mackenzie.bc.libraries.coop/files/2014/08/Lego.jpg)
