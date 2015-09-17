@@ -29,18 +29,6 @@ class TextBox extends BaseComponent {
     }
   }
 
-  _getTextInput() {
-    return ReactDom.findDOMNode(this.refs.textInput);
-  }
-
-  _handleChange(event) {
-    this.setState({value: event.target.value}, () => {
-      if (this.props.onChange) {
-        this.props.onChange(this.state.value);
-      }
-    });
-  }
-
   render() {
     let label = null;
     let inputClasses = ['mdl-textfield__input'];
@@ -77,6 +65,22 @@ class TextBox extends BaseComponent {
         {label}
       </div>
     );
+  }
+
+  _getTextInput() {
+    return ReactDom.findDOMNode(this.refs.textInput);
+  }
+
+  _handleChange(event) {
+    this.setState({value: event.target.value}, () => {
+      if (this.props.onChange) {
+        let value = this.props.type !== 'number' ?
+        this.state.value :
+        parseInt(this.state.value, 10);
+
+        this.props.onChange(value);
+      }
+    });
   }
 
 }
