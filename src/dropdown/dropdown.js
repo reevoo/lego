@@ -13,15 +13,15 @@ class Dropdown extends BaseComponent {
     let items = this.props.items;
 
     return (
-      <div className='.mdl-dropdown'>
+      <div className='mdl-dropdown'>
         {label ? <div>{label}</div> : null}
         <select
-          className='.mdl-dropdown__select'
+          className='mdl-dropdown__select'
           onChange={this.props.onSelect}
           value={value}
           >
           {items.map(item =>
-            <option value={item.value}>{item.label}</option>
+            <option value={item.value} key={item.value}>{item.label}</option>
           )}
         </select>
       </div>
