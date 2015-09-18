@@ -5,13 +5,16 @@ class Dropdown extends BaseComponent {
 
   constructor() {
     super();
-
-    this._bind('_buildItems', '_handleFocus');
   }
 
   render() {
-    let items = this._buildItems(this.props.items);
     let label = this.props.label;
+    let value = this.props.value;
+    let items = this.props.items.map((item, index) => ({
+      label: item.label,
+      value: item.value,
+      selected: item.value === value,
+    }));
 
     return (
       <div style={{display:'inline-block'}}>
@@ -24,14 +27,6 @@ class Dropdown extends BaseComponent {
         <i className='material-icons' style={{position:'absolute', right:0, bottom:'25px'}}>arrow_drop_down</i>
       </div>
     );
-  }
-
-  _buildItems(items) {
-    return items.map((item, index) => ({
-      label: item.label,
-      value: item.value,
-      selected: item.value === this.props.value,
-    }));
   }
 
 }
