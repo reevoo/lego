@@ -6,12 +6,18 @@ class Dropdown extends BaseComponent {
   constructor(props) {
     super(props);
 
+    this._bind('_handleChange');
+
     this.state = { value: props.value };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({value: nextProps.value});
   }
 
   render() {
     let label = this.props.label;
-    let value = this.props.value;
+    let value = this.state.value;
     let items = this.props.items;
 
     return (
