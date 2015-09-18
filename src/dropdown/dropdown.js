@@ -1,9 +1,6 @@
 import React from 'react';
 import BaseComponent from '../base_component';
 
-import DropdownMenu from './dropdown_menu';
-import TextBox from '../text_box/text_box';
-
 class Dropdown extends BaseComponent {
 
   constructor() {
@@ -13,26 +10,18 @@ class Dropdown extends BaseComponent {
   }
 
   render() {
-    let dropdownId = this.props.id;
     let items = this._buildItems(this.props.items);
     let label = this.props.label;
-    let value = this.props.value;
 
     return (
-      <div style={{position:'relative'}}>
-        <TextBox
-          id={dropdownId}
-          type='text'
-          label={label}
-          value={value}
-          cursorPointer={true}
-          onFocus={this._handleFocus} />
+      <div style={{display:'inline-block'}}>
+        {label ? <div>{label}</div> : null}
+        <select onChange={this.props.onSelect}>
+          {items.map(item =>
+            <option value={item.value} selected={item.selected}>{item.label}</option>
+          )}
+        </select>
         <i className='material-icons' style={{position:'absolute', right:0, bottom:'25px'}}>arrow_drop_down</i>
-
-        <DropdownMenu
-          triggerId={dropdownId}
-          items={items}
-          onSelect={this.props.onSelect} />
       </div>
     );
   }
@@ -45,15 +34,9 @@ class Dropdown extends BaseComponent {
     }));
   }
 
-  _handleFocus(event) {
-    // Removes the cursor when the textbox receives the click
-    event.target.blur();
-  }
-
 }
 
 Dropdown.propTypes = {
-  id: React.PropTypes.string.isRequired,
   items: React.PropTypes.array,
   label: React.PropTypes.string,
   onSelect: React.PropTypes.func,
