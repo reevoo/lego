@@ -1,6 +1,6 @@
 {
   "name": "reevoo-lego",
-  "version": "0.1.32",
+  "version": "0.1.33",
   "description": "React Components using the Material Design Lite library",
   "main": "index.js",
   "scripts": {

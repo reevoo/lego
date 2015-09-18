@@ -36,16 +36,9 @@ class Dropdown extends BaseComponent {
     );
   }
 
-  // <i
-  //   className='material-icons'
-  //   style={{position:'absolute', right:0, bottom:'25px'}}
-  //   >
-  //   arrow_drop_down
-  // </i>
-
   _handleChange(event) {
     this.setState({value: event.target.value}, () => {
-      this.props.onSelect(value);
+      this.props.onSelect(this.state.value);
     });
   }
 
