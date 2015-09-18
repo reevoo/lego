@@ -1,7 +1,7 @@
 import React from 'react';
 import BaseComponent from '../base_component';
 
-export default class AutocompleteMenuItem extends BaseComponent {
+class AutocompleteMenuItem extends BaseComponent {
 
   constructor(props) {
     super(props);
@@ -34,3 +34,5 @@ AutocompleteMenuItem.propTypes = {
   onClick: React.PropTypes.func,
   selected: React.PropTypes.bool,
 };
+
+export default AutocompleteMenuItem;

@@ -2,7 +2,7 @@ import React from 'react';
 
 import TableCell from './table_cell';
 
-export default class TableRow extends React.Component {
+class TableRow extends React.Component {
 
   render() {
     let item = this.props.item;
@@ -28,3 +28,5 @@ TableRow.propTypes = {
     numeric: React.PropTypes.bool,
   })).isRequired,
 };
+
+export default TableRow;

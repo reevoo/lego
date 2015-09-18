@@ -3,7 +3,7 @@ import React from 'react';
 import BaseComponent from '../base_component';
 import Button from '../button/button';
 
-export default class Form extends BaseComponent {
+class Form extends BaseComponent {
   render() {
     let title = this.props.title ? <h4>{this.props.title}</h4> : null;
     let submitLabel = this.props.submitLabel ? this.props.submitLabel : 'Send';
@@ -23,3 +23,5 @@ Form.propTypes = {
   submitLabel: React.PropTypes.string,
   title: React.PropTypes.string,
 };
+
+export default Form;

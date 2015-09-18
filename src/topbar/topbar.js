@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class Topbar extends React.Component {
+class Topbar extends React.Component {
 
   render() {
     return (
@@ -17,3 +17,5 @@ export default class Topbar extends React.Component {
 Topbar.propTypes = {
   title: React.PropTypes.string.isRequired,
 };
+
+export default Topbar;

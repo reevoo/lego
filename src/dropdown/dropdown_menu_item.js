@@ -1,7 +1,7 @@
 import React from 'react';
 import BaseComponent from '../base_component';
 
-export default class DropdownMenuItem extends BaseComponent {
+class DropdownMenuItem extends BaseComponent {
 
   constructor(props) {
     super(props);
@@ -35,3 +35,5 @@ DropdownMenuItem.propTypes = {
   selected: React.PropTypes.bool,
   value: React.PropTypes.any.isRequired,
 };
+
+export default DropdownMenuItem;

@@ -3,7 +3,7 @@ import BaseComponent from '../base_component';
 import Dropdown from './dropdown';
 import TagList from '../tag_list/tag_list';
 
-export default class DropdownTagList extends BaseComponent {
+class DropdownTagList extends BaseComponent {
 
   render() {
     return (
@@ -34,3 +34,5 @@ DropdownTagList.propTypes = {
   onSelect: React.PropTypes.func,
   sourceItems: React.PropTypes.array,
 };
+
+export default DropdownTagList;

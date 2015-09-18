@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 
-export default class Sidebar extends React.Component {
+class Sidebar extends React.Component {
 
   render() {
     return (
@@ -26,3 +26,5 @@ Sidebar.propTypes = {
     label: React.PropTypes.string.isRequired,
   })).isRequired,
 };
+
+export default Sidebar;

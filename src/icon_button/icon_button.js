@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class IconButton extends React.Component {
+class IconButton extends React.Component {
   render() {
     let type = this.props.type ? this.props.type : 'button';
 
@@ -18,3 +18,5 @@ IconButton.propTypes = {
   onClick: React.PropTypes.func.isRequired,
   type: React.PropTypes.string,
 };
+
+export default IconButton;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class TableCell extends React.Component {
+class TableCell extends React.Component {
 
   render() {
     return <td
@@ -16,3 +16,5 @@ TableCell.propTypes = {
   colspan: React.PropTypes.number,
   numeric: React.PropTypes.bool,
 };
+
+export default TableCell;

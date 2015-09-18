@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class Card extends React.Component {
+class Card extends React.Component {
   render() {
     return (
       <div className={`card mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--${this.props.cols}-col ${this.props.className}`}
@@ -18,3 +18,5 @@ Card.propTypes = {
 Card.defaultProps = {
   cols: 12,
 };
+
+export default Card;

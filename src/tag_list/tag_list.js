@@ -2,7 +2,7 @@ import React from 'react';
 import BaseComponent from '../base_component';
 import Tag from './tag';
 
-export default class TagList extends BaseComponent {
+class TagList extends BaseComponent {
   render() {
     let keyField = this.props.keyField;
     let labelField = this.props.labelField;
@@ -25,3 +25,5 @@ TagList.propTypes = {
   labelField: React.PropTypes.string,
   onDeleteItem: React.PropTypes.func,
 };
+
+export default TagList;

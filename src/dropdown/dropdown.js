@@ -4,7 +4,7 @@ import BaseComponent from '../base_component';
 import DropdownMenu from './dropdown_menu';
 import TextBox from '../text_box/text_box';
 
-export default class Dropdown extends BaseComponent {
+class Dropdown extends BaseComponent {
 
   constructor() {
     super();
@@ -41,7 +41,7 @@ export default class Dropdown extends BaseComponent {
     return items.map((item, index) => ({
       label: item.label,
       value: item.value,
-      selected: item.value === this.props.value
+      selected: item.value === this.props.value,
     }));
   }
 
@@ -59,3 +59,5 @@ Dropdown.propTypes = {
   onSelect: React.PropTypes.func,
   value: React.PropTypes.string,
 };
+
+export default Dropdown;

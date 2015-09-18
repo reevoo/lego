@@ -3,7 +3,7 @@ import BaseComponent from '../base_component';
 import Autocomplete from './autocomplete';
 import TagList from '../tag_list/tag_list';
 
-export default class AutocompleteTagList extends BaseComponent {
+class AutocompleteTagList extends BaseComponent {
   render() {
     return (
       <div>
@@ -36,3 +36,5 @@ AutocompleteTagList.propTypes = {
   onSelect: React.PropTypes.func,
   sourceItems: React.PropTypes.array,
 };
+
+export default AutocompleteTagList;

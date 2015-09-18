@@ -3,7 +3,7 @@ import BaseComponent from '../base_component';
 
 const DEFAULT_TYPE = 'checkbox'; // switch is the other option
 
-export default class CheckBox extends BaseComponent {
+class CheckBox extends BaseComponent {
 
   constructor(props) {
     super(props);
@@ -42,3 +42,5 @@ CheckBox.propTypes = {
   label: React.PropTypes.string.isRequired,
   type: React.PropTypes.oneOf([DEFAULT_TYPE, 'switch']),
 };
+
+export default CheckBox;

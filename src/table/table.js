@@ -2,7 +2,7 @@ import React from 'react';
 
 import TableRow from './table_row';
 
-export default class Table extends React.Component {
+class Table extends React.Component {
 
   render() {
     let headers = this.props.columns.map(column => ({
@@ -45,3 +45,5 @@ Table.propTypes = {
     numeric: React.PropTypes.bool,
   })).isRequired,
 };
+
+export default Table;
