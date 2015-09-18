@@ -16,6 +16,7 @@ import _TableCell from './src/table/table_cell';
 import _TableRow from './src/table/table_row';
 import _TagList from './src/tag_list/tag_list';
 import _TextBox from './src/text_box/text_box';
+import _TimePicker from './src/time_picker/time_picker';
 import _Topbar from './src/topbar/topbar';
 
 // Export components
@@ -36,4 +37,5 @@ export const TableCell = _TableCell;
 export const TableRow = _TableRow;
 export const TagList = _TagList;
 export const TextBox = _TextBox;
+export const TimePicker = _TimePicker;
 export const Topbar = _Topbar;
