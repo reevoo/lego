@@ -2,11 +2,8 @@
 
 @import 'button/_button';
 @import 'card/_card';
+@import 'dropdown/_dropdown';
 @import 'topbar/_topbar';
-
-.mdl-button--defaultcase {
-  text-transform: none;
-}
 
 .mdl-menu__item--active {
   background-color: #e0e0e0;

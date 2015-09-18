@@ -10,29 +10,38 @@ class Dropdown extends BaseComponent {
   render() {
     let label = this.props.label;
     let value = this.props.value;
-    let items = this.props.items.map((item, index) => ({
-      label: item.label,
-      value: item.value,
-      selected: item.value === value,
-    }));
+    let items = this.props.items;
 
     return (
-      <div style={{display:'inline-block'}}>
+      <div className='.mdl-dropdown'>
         {label ? <div>{label}</div> : null}
-        <select onChange={this.props.onSelect}>
+        <select
+          className='.mdl-dropdown__select'
+          onChange={this.props.onSelect}
+          value={value}
+          >
           {items.map(item =>
-            <option value={item.value} selected={item.selected}>{item.label}</option>
+            <option value={item.value}>{item.label}</option>
           )}
         </select>
-        <i className='material-icons' style={{position:'absolute', right:0, bottom:'25px'}}>arrow_drop_down</i>
       </div>
     );
   }
 
+  // <i
+  //   className='material-icons'
+  //   style={{position:'absolute', right:0, bottom:'25px'}}
+  //   >
+  //   arrow_drop_down
+  // </i>
+
 }
 
 Dropdown.propTypes = {
-  items: React.PropTypes.array,
+  items: React.PropTypes.arrayOf(React.PropTypes.shape({
+    label: React.PropTypes.string.isRequired,
+    value: React.PropTypes.string.isRequired,
+  })).isRequired,
   label: React.PropTypes.string,
   onSelect: React.PropTypes.func,
   value: React.PropTypes.string,

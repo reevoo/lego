@@ -9233,11 +9233,11 @@ _:-ms-input-placeholder, :root .mdl-slider.mdl-slider.is-upgraded {
   margin-bottom: 0;
   margin-top: 0; }
 
+.mdl-dropdown {
+  display: 'inline-block'; }
+
 .topbar {
   z-index: 99; }
-
-.mdl-button--defaultcase {
-  text-transform: none; }
 
 .mdl-menu__item--active {
   background-color: #e0e0e0; }
