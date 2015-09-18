@@ -3,8 +3,10 @@ import BaseComponent from '../base_component';
 
 class Dropdown extends BaseComponent {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
+    this.state = { value: props.value };
   }
 
   render() {
@@ -17,7 +19,7 @@ class Dropdown extends BaseComponent {
         {label ? <div>{label}</div> : null}
         <select
           className='mdl-dropdown__select'
-          onChange={this.props.onSelect}
+          onChange={this._handleChange}
           value={value}
           >
           {items.map(item =>
@@ -34,6 +36,12 @@ class Dropdown extends BaseComponent {
   //   >
   //   arrow_drop_down
   // </i>
+
+  _handleChange(event) {
+    this.setState({value: event.target.value}, () => {
+      this.props.onSelect(value);
+    });
+  }
 
 }
 
