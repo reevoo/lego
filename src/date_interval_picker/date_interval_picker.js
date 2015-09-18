@@ -1,5 +1,6 @@
 import React from 'react';
 import BaseComponent from '../base_component';
+import TextBox from './text_box/text_box';
 
 class DateIntervalPicker extends BaseComponent {
   constructor() {
