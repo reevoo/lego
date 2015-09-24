@@ -7,35 +7,35 @@ class Dropdown extends BaseComponent {
   constructor(props) {
     super(props);
 
-    this._bind('_handleChange', 'getWidth');
+    this._bind('_handleChange');
 
     this.state = {
       value: props.value,
-      wrapperWidth: this.getWidth(),
+      lastWidth: 0,
+      wrapperWidth: 0,
     };
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    this.setState({wrapperWidth: this.getWidth()});
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({value: nextProps.value});
   }
 
-  setWidth() {
+  componentDidUpdate() {
     let currentWidth = this.refs.select.offsetWidth;
-    this.setState({wrapperWidth: currentWidth + 20});
+    if (currentWidth !== this.state.lastWidth) {
+      this.setState({
+        lastWidth: currentWidth,
+        wrapperWidth: currentWidth + 20,
+      });
+    }
   }
 
   render() {
-    let label = this.props.label;
-    let value = this.state.value;
-    let items = this.props.items;
-
-    return (
-      <span className='mdl-dropdown' style={{width:`${wrapperWidth}px`}}>
-        {label ? <div>{label}</div> : null}
+    const label = this.props.label;
+    const value = this.state.value;
+    const items = this.props.items;
+    const dropdown = (
+      <span className='mdl-dropdown' style={{width:`${this.state.wrapperWidth}px`}}>
         <select
           ref='select'
           className='mdl-dropdown__select'
@@ -49,6 +49,14 @@ class Dropdown extends BaseComponent {
         <i className='material-icons mdl-dropdown__arrow'>expand_more</i>
       </span>
     );
+
+    return label ?
+      <span>
+        <div>{label}</div>
+        {dropdown}
+      </span>
+      :
+      dropdown;
   }
 
   _handleChange(event) {
