@@ -21,7 +21,7 @@ class Dropdown extends BaseComponent {
     let items = this.props.items;
 
     return (
-      <div className='mdl-dropdown'>
+      <span className='mdl-dropdown'>
         {label ? <div>{label}</div> : null}
         <select
           className='mdl-dropdown__select'
@@ -32,7 +32,7 @@ class Dropdown extends BaseComponent {
             <option value={item.value} key={item.value}>{item.label}</option>
           )}
         </select>
-      </div>
+      </span>
     );
   }
 
