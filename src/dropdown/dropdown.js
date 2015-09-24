@@ -32,6 +32,7 @@ class Dropdown extends BaseComponent {
             <option value={item.value} key={item.value}>{item.label}</option>
           )}
         </select>
+        <i className='material-icons mdl-dropdown__arrow'>{this.props.icon}</i>
       </span>
     );
   }

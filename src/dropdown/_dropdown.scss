@@ -1,7 +1,23 @@
 .mdl-dropdown {
-  display: 'inline-block';
+  display: inline-block;
+  width: 240px;
+  height: 34px;
+  overflow: hidden;
+  border: 1px solid #ccc;
 }
 
 .mdl-dropdown__select {
+  background: transparent;
+  width: 268px;
+  padding: 5px;
+  font-size: 16px;
+  line-height: 1;
+  border: 0;
+  border-radius: 0;
+  height: 34px;
+  -webkit-appearance: none;
+}
 
+.mdl-dropdown__arrow {
+  position: absolute;
 }
