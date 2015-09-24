@@ -25,14 +25,13 @@
 
 .mdl-dropdown {
   display: inline-block;
-  width: 240px;
   height: 34px;
   overflow: hidden;
-  border: 1px solid #ccc; }
+  border: 1px solid #ccc;
+  position: relative; }
 
 .mdl-dropdown__select {
   background: transparent;
-  width: 268px;
   padding: 5px;
   font-size: 16px;
   line-height: 1;
@@ -42,7 +41,9 @@
   -webkit-appearance: none; }
 
 .mdl-dropdown__arrow {
-  position: absolute; }
+  position: absolute;
+  top: 6px;
+  right: 0; }
 
 .topbar {
   z-index: 99; }
