@@ -1,6 +1,6 @@
-$topbar_height: 64px;
+$topbar-height: 64px;
 
 .mdl-layout__drawer {
-  height: calc(100% - $topbar_height);
-  top: $topbar_height;
+  height: calc(100% - #{$topbar-height});
+  top: $topbar-height;
 }

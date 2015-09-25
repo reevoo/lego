@@ -46,7 +46,7 @@
   right: 0; }
 
 .mdl-layout__drawer {
-  height: calc(100% - $topbar_height);
+  height: calc(100% - 64px);
   top: 64px; }
 
 .mdl-layout {
@@ -61,6 +61,10 @@
 
 .mdl-layout--fixed-drawer > .mdl-layout__header .mdl-layout__header-row {
   padding-left: 72px; }
+
+.mdl-layout__header .mdl-layout__drawer-button i.material-icons {
+  position: relative;
+  top: 8px; }
 
 .mdl-menu__item--active {
   background-color: #e0e0e0; }
