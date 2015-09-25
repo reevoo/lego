@@ -10,9 +10,9 @@ class Layout extends React.Component {
     const topbar = this.props.topbar;
     const sidebar = this.props.sidebar;
 
-    return <div className='mdl-layout mdl-js-layout mdl-layout--fixed-header'>
-      <Topbar title={topbar.title} />
-      <div className='mdl-layout mdl-js-layout mdl-layout--fixed-drawer'>
+    return (
+      <div className='mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-drawer'>
+        <Topbar title={topbar.title} />
         <Sidebar routes={sidebar.routes} />
         <main className='mdl-layout__content mdl-color--grey-100'>
           <div className='mdl-grid'>
@@ -22,7 +22,7 @@ class Layout extends React.Component {
           </div>
         </main>
       </div>
-    </div>;
+    );
   }
 }
 

@@ -1,3 +1,6 @@
-.mdl-layout {
-  overflow-y: hidden;
+$topbar_height: 64px;
+
+.mdl-layout__drawer {
+  height: calc(100% - $topbar_height);
+  top: $topbar_height;
 }
