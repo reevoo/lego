@@ -45,6 +45,9 @@
   top: 6px;
   right: 0; }
 
+.mdl-layout {
+  overflow-y: hidden; }
+
 .topbar {
   z-index: 99; }
 
