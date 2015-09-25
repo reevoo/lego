@@ -56,7 +56,7 @@ class DateIntervalPicker extends BaseComponent {
 
       this.fields.forEach(field => {
         let name = field.key;
-        if (key === name && value > field.min) {
+        if (key === name && value >= field.min) {
           map.set(name, value);
         } else if (key !== name && this.props[name]) {
           map.set(name, this.props[name]);
