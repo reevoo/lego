@@ -23,29 +23,16 @@
     "url": "https://github.com/reevoo/lego/issues"
   },
   "homepage": "https://github.com/reevoo/lego#readme",
-  "jspm": {
-    "directories": {},
-    "dependencies": {
-      "clean-css": "npm:clean-css@^3.4.1",
-      "css": "github:systemjs/plugin-css@^0.1.16",
-      "material-design-lite": "github:google/material-design-lite@^1.0.4",
-      "react": "npm:react@^0.14.0-rc1",
-      "react-dom": "npm:react-dom@^0.14.0-rc1"
-    },
-    "devDependencies": {
-      "babel": "npm:babel-core@^5.1.13",
-      "babel-runtime": "npm:babel-runtime@^5.1.13",
-      "core-js": "npm:core-js@^0.9.4"
-    }
-  },
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-jscs": "^2.1.0",
-    "grunt-karma": "^0.12.1",
     "grunt-sass": "^1.0.0",
-    "grunt-shell-spawn": "^0.3.9",
     "jscs": "^2.1.1",
-    "karma": "^0.13.9",
     "load-grunt-tasks": "^3.2.0"
+  },
+  "dependencies": {
+    "material-design-lite": "^1.0.6",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3"
   }
 }
