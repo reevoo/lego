@@ -3,14 +3,9 @@ import BaseComponent from '../base_component';
 import Dropdown from '../dropdown/dropdown';
 
 function generateDropdownNumbers(to) {
-  return Array.from(Array(to).keys())
-    .map(value => {
-      const strVal = value < 10 ? `0${value}` : `${value}`;
-      return {
-        label: strVal,
-        value: strVal,
-      };
-    });
+  return new Array(to)
+    .map(value => value < 10 ? `0${value}` : `${value}`)
+    .map(value => ({ label: value, value: value }));
 }
 
 const HOURS = generateDropdownNumbers(24);
