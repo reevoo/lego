@@ -5,16 +5,19 @@ import mdl from 'material-design-lite/material.min';
 
 export default Component => class extends React.Component {
   componentDidMount() {
-    mdl.componentHandler.upgradeElement(ReactDom.findDOMNode(this));
+    // componentHandler is a global object from MDL
+    componentHandler.upgradeElement(ReactDom.findDOMNode(this));
   }
 
   componentDidUpdate() {
-    mdl.componentHandler.downgradeElements(ReactDom.findDOMNode(this));
-    mdl.componentHandler.upgradeElement(ReactDom.findDOMNode(this));
+    // componentHandler is a global object from MDL
+    componentHandler.downgradeElements(ReactDom.findDOMNode(this));
+    componentHandler.upgradeElement(ReactDom.findDOMNode(this));
   }
 
   componentWillUnmount() {
-    mdl.componentHandler.downgradeElements(ReactDom.findDOMNode(this));
+    // componentHandler is a global object from MDL
+    componentHandler.downgradeElements(ReactDom.findDOMNode(this));
   }
 
   render() {
