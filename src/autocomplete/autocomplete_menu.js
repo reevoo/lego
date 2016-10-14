@@ -34,7 +34,6 @@ class AutocompleteMenu extends React.Component {
 
     return (
       <ul
-        className='mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect'
         htmlFor={this.props.triggerId}
         style={style}>
         {items}
