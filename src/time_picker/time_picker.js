@@ -3,7 +3,7 @@ import BaseComponent from '../base_component';
 import Dropdown from '../dropdown/dropdown';
 
 function generateDropdownNumbers(to) {
-  return new Array(to)
+  return [...Array(to).keys()]
     .map(value => value < 10 ? `0${value}` : `${value}`)
     .map(value => ({ label: value, value: value }));
 }
